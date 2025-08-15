@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 12:06:46 by aosset-o          #+#    #+#             */
-/*   Updated: 2025/08/11 15:38:27 by aosset-o         ###   ########.fr       */
+/*   Updated: 2025/08/13 13:55:19 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void *routine()
 {
 	printf("Test from threads\n");
-	sleep(3);
+	sleep(5);
 	printf("Ending thread\n");
 	return(NULL);
 }
