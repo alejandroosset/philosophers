@@ -6,7 +6,7 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 12:09:58 by aosset-o          #+#    #+#             */
-/*   Updated: 2025/08/15 13:33:58 by aosset-o         ###   ########.fr       */
+/*   Updated: 2025/08/19 11:08:41 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,6 @@ typedef struct s_philo
 }					t_philo;
 int	ft_atoi(const char *nptr);
 void  init_arg(int ac, char *av[], t_args *args);
+int parse_error(int ac, char *av[]);
+void	ft_putendl_fd(char *s, int fd);
 #endif
