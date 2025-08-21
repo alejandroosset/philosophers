@@ -6,7 +6,7 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 12:06:46 by aosset-o          #+#    #+#             */
-/*   Updated: 2025/08/19 11:27:59 by aosset-o         ###   ########.fr       */
+/*   Updated: 2025/08/21 15:31:08 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,7 @@ void *routine()
 }
 int main(int ac, char *av[])
 {
-	printf("%i\n",ft_atoi(av[1]));
-	if(parse_error(ac, av) == -1)
-		return(ft_putendl_fd("Invalid arguments", 2), 1);
+	if(check_args(ac, av) == -1)
+		return(1);
 	return(0);		
 }
