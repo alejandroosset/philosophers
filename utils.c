@@ -6,7 +6,7 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 11:14:18 by aosset-o          #+#    #+#             */
-/*   Updated: 2025/08/19 11:23:26 by aosset-o         ###   ########.fr       */
+/*   Updated: 2025/08/19 12:25:13 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,23 @@ void	ft_putendl_fd(char *s, int fd)
 		i++;
 	}
 	write(fd, "\n", 1);
+}
+
+int	ft_usleep(size_t milliseconds)
+{
+	size_t	start;
+
+	start = get_current_time();
+	while ((get_current_time() - start) < milliseconds)
+		usleep(500);
+	return (0);
+}
+
+size_t	get_current_time(void)
+{
+	struct timeval	time;
+
+	if (gettimeofday(&time, NULL) == -1)
+		ft_putendl_fd("gettimeofday() error",2);
+	return (time.tv_sec * 1000 + time.tv_usec / 1000);
 }

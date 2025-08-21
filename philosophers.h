@@ -6,7 +6,7 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 12:09:58 by aosset-o          #+#    #+#             */
-/*   Updated: 2025/08/19 11:08:41 by aosset-o         ###   ########.fr       */
+/*   Updated: 2025/08/19 19:47:28 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef struct s_args
 
 typedef struct s_philo
 {
-	int nb_philo;
+	int id;
    int time_death;
    int time_eat;
    int time_sleep;
