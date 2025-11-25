@@ -6,7 +6,7 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 12:09:58 by aosset-o          #+#    #+#             */
-/*   Updated: 2025/08/21 15:29:57 by aosset-o         ###   ########.fr       */
+/*   Updated: 2025/11/25 18:41:35 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,32 +21,34 @@
 
 typedef struct s_philo
 {
-   pthread_t		thread;
-	int				id;
-	int				eating;
-	int				meals_eaten;
-	size_t			last_meal;
-	size_t			time_to_die;
-	size_t			time_to_eat;
-	size_t			time_to_sleep;
-	size_t			start_time;
-	int				num_of_philos;
-	int				num_times_to_eat;
-	int				*dead;
+	struct s_data	*data;
+	pthread_t       t1;
+	int             id;
+	int             eat_cont;
+	int             status;
+	int             eating;
+	int        time_to_die;
+	pthread_mutex_t	lock;
 	pthread_mutex_t	*r_fork;
 	pthread_mutex_t	*l_fork;
-	pthread_mutex_t	*write_lock;
-	pthread_mutex_t	*dead_lock;
-	pthread_mutex_t	*meal_lock;
 } t_philo;
-typedef struct s_program
+
+typedef struct s_data
 {
-	int				dead_flag;
-	pthread_mutex_t	dead_lock;
-	pthread_mutex_t	meal_lock;
-	pthread_mutex_t	write_lock;
-	t_philo			*philos;
-}					t_program;
+	pthread_t       *tid;
+	int             philo_num;
+	int             meals_nb;
+	int             dead;
+	int             finished;
+	t_philo         *philos;
+	int       death_time;
+	int       eat_time;
+	int       sleep_time;
+	//int       start_time;
+	pthread_mutex_t *forks;
+	pthread_mutex_t lock;
+	pthread_mutex_t write;
+} t_data;				t_program;
 int	ft_atoi(const char *nptr);
 int  init_arg(int ac, char *av[], t_philo *philo);
 int check_args(int ac, char *av[]);
