@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 12:09:58 by aosset-o          #+#    #+#             */
-/*   Updated: 2025/11/25 18:41:35 by aosset-o         ###   ########.fr       */
+/*   Updated: 2025/11/26 16:47:58 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ typedef struct s_philo
 	struct s_data	*data;
 	pthread_t       t1;
 	int             id;
-	int             eat_cont;
+	int             eat_count;
 	int             status;
 	int             eating;
 	int        time_to_die;
@@ -48,7 +48,7 @@ typedef struct s_data
 	pthread_mutex_t *forks;
 	pthread_mutex_t lock;
 	pthread_mutex_t write;
-} t_data;				t_program;
+} t_data;
 int	ft_atoi(const char *nptr);
 int  init_arg(int ac, char *av[], t_philo *philo);
 int check_args(int ac, char *av[]);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 12:06:46 by aosset-o          #+#    #+#             */
-/*   Updated: 2025/08/21 15:31:08 by aosset-o         ###   ########.fr       */
+/*   Updated: 2025/11/26 16:47:40 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void *routine()
 }
 int main(int ac, char *av[])
 {
-	if(check_args(ac, av) == -1)
+	if(check_args(ac, av))
 		return(1);
 	return(0);		
 }
