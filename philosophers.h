@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 12:09:58 by aosset-o          #+#    #+#             */
-/*   Updated: 2025/11/26 16:47:58 by marvin           ###   ########.fr       */
+/*   Updated: 2025/11/27 15:48:01 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ typedef struct s_data
 	int       death_time;
 	int       eat_time;
 	int       sleep_time;
-	//int       start_time;
+	int       start_time;
 	pthread_mutex_t *forks;
 	pthread_mutex_t lock;
 	pthread_mutex_t write;
@@ -55,4 +55,7 @@ int check_args(int ac, char *av[]);
 void	ft_putendl_fd(char *s, int fd);
 int	ft_usleep(size_t milliseconds);
 size_t	get_current_time(void);
+void *routine(void *arg);
+int init(int ac, char *av[], t_data *data);
+int init_threads(t_data *data);
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 11:14:18 by aosset-o          #+#    #+#             */
-/*   Updated: 2025/11/26 16:47:09 by marvin           ###   ########.fr       */
+/*   Updated: 2025/11/27 18:28:23 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@ int check_args(int ac, char *av[])
 {
 	if(ac != 5 && ac != 6)
 		return(ft_putendl_fd("Number of arguments is invalid", 2), 1);
-	if(ft_atoi(av[1]) < 1 || ft_atoi(av[1]) > 200 || ft_atoi(av[2]) < 60 || 
-	ft_atoi(av[3]) < 60 || ft_atoi(av[4]) < 60)
+	if(ft_atoi(av[1]) < 1 || ft_atoi(av[2]) < 1 || 
+	ft_atoi(av[3]) < 1 || ft_atoi(av[4]) < 1)
 		return(ft_putendl_fd("The value of the arguments is invalid ", 2), 1);
 	if (ac == 6)
 	{
-		if(ft_atoi(av[5]) < 60)
+		if(ft_atoi(av[5]) < 1)
 			return(ft_putendl_fd("The value of the arguments is invalid ", 2), 1);
 	}
 	return(0);

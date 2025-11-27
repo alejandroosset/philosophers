@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 11:24:23 by aosset-o          #+#    #+#             */
-/*   Updated: 2025/11/26 16:49:56 by marvin           ###   ########.fr       */
+/*   Updated: 2025/11/27 17:30:58 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,16 @@ void init_forks(t_data *data)
 {
     int i;
 
-    i = -1;
-    while(i++ < data->philo_num)
+    i = 0;
+    while (i < data->philo_num)
+    {
         pthread_mutex_init(&data->forks[i], NULL);
+        i++;
+    }
     data->philos[0].l_fork = &data->forks[0];
     data->philos[0].r_fork = &data->forks[data->philo_num - 1];
     i = 1;
-    while(i < data->philo_num - 1)
+    while (i < data->philo_num)
     {
         data->philos[i].l_fork = &data->forks[i];
         data->philos[i].r_fork = &data->forks[i - 1];
@@ -69,6 +72,7 @@ void init_philos(t_data *data)
         data->philos[i].eating = 0;
         data->philos[i].time_to_die = data->death_time;
         pthread_mutex_init(&data->philos[i].lock, NULL);
+        data->philos[i].data = data;
         i++;
     }
 }

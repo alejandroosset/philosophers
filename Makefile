@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
+#    By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/11 12:10:36 by aosset-o          #+#    #+#              #
-#    Updated: 2025/11/26 16:50:16 by marvin           ###   ########.fr        #
+#    Updated: 2025/11/27 16:59:01 by aosset-o         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,8 @@ CFLAGS=-Wall -Werror -Wextra
 
 
 NAME = philo
-SRC = main.c utils.c init.c 
+SRC = main.c utils.c init.c \
+threads.c
 OBJ = $(SRC:.c=.o)
 
 INCLUDE = philosophers.h
