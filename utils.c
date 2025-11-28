@@ -6,7 +6,7 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 11:14:18 by aosset-o          #+#    #+#             */
-/*   Updated: 2025/11/27 18:28:23 by aosset-o         ###   ########.fr       */
+/*   Updated: 2025/11/28 14:12:49 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,46 +27,6 @@ int check_args(int ac, char *av[])
 	return(0);
 }
 
-int	ft_atoi(const char *nptr)
-{
-	int	i;
-	int	res;
-
-	i = 0;
-	res = 0;
-	while (nptr[i] != '\0')
-	{
-		if (((nptr[i]<= '0' && nptr[i] >= '9')) &&  nptr[i] != '+' && 
-			(nptr[i] >= 9 && nptr[i] <= 13))
-			return(-1);
-		i++;
-	}
-	i = 0;
-	while ((nptr[i] >= 9 && nptr[i] <= 13) || nptr[i] == ' ')
-		i++;
-	if (nptr[i] == '+')
-		i++;
-	while (nptr[i] >= '0' && nptr[i] <= '9')
-	{
-		res = res * 10 + nptr[i] - '0';
-		i++;
-	}
-	return (res);
-}
-
-void	ft_putendl_fd(char *s, int fd)
-{
-	int	i;
-
-	i = 0;
-	while (s[i] != '\0')
-	{
-		write(fd, &s[i], 1);
-		i++;
-	}
-	write(fd, "\n", 1);
-}
-
 int	ft_usleep(size_t milliseconds)
 {
 	size_t	start;
@@ -75,6 +35,29 @@ int	ft_usleep(size_t milliseconds)
 	while ((get_current_time() - start) < milliseconds)
 		usleep(500);
 	return (0);
+}
+void	clear_data(t_data	*data)
+{
+	if (data->tid)
+		free(data->tid);
+	if (data->forks)
+		free(data->forks);
+	if (data->philos)
+		free(data->philos);
+}
+void	ft_exit(t_data *data)
+{
+	int	i;
+
+	i = -1;
+	while (++i < data->philo_num)
+	{
+		pthread_mutex_destroy(&data->forks[i]);
+		pthread_mutex_destroy(&data->philos[i].lock);
+	}
+	pthread_mutex_destroy(&data->write);
+	pthread_mutex_destroy(&data->lock);
+	clear_data(data);
 }
 
 size_t	get_current_time(void)

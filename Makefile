@@ -6,7 +6,7 @@
 #    By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/11 12:10:36 by aosset-o          #+#    #+#              #
-#    Updated: 2025/11/27 16:59:01 by aosset-o         ###   ########.fr        #
+#    Updated: 2025/11/28 16:51:21 by aosset-o         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CFLAGS=-Wall -Werror -Wextra
 
 NAME = philo
 SRC = main.c utils.c init.c \
-threads.c
+threads.c libft_utils.c actions.c
 OBJ = $(SRC:.c=.o)
 
 INCLUDE = philosophers.h

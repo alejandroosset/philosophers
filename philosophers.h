@@ -6,7 +6,7 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 12:09:58 by aosset-o          #+#    #+#             */
-/*   Updated: 2025/11/27 15:48:01 by aosset-o         ###   ########.fr       */
+/*   Updated: 2025/11/28 17:14:47 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ typedef struct s_philo
 	int             eat_count;
 	int             status;
 	int             eating;
-	int        time_to_die;
+	size_t        time_to_die;
 	pthread_mutex_t	lock;
 	pthread_mutex_t	*r_fork;
 	pthread_mutex_t	*l_fork;
@@ -41,15 +41,15 @@ typedef struct s_data
 	int             dead;
 	int             finished;
 	t_philo         *philos;
-	int       death_time;
-	int       eat_time;
-	int       sleep_time;
-	int       start_time;
+	size_t       death_time;
+	size_t       eat_time;
+	size_t       sleep_time;
+	size_t       start_time;
 	pthread_mutex_t *forks;
 	pthread_mutex_t lock;
 	pthread_mutex_t write;
 } t_data;
-int	ft_atoi(const char *nptr);
+size_t	ft_atoi(const char *nptr);
 int  init_arg(int ac, char *av[], t_philo *philo);
 int check_args(int ac, char *av[]);
 void	ft_putendl_fd(char *s, int fd);
@@ -58,4 +58,11 @@ size_t	get_current_time(void);
 void *routine(void *arg);
 int init(int ac, char *av[], t_data *data);
 int init_threads(t_data *data);
+int	ft_strcmp(const char *s1, const char *s2);
+void ft_exit(t_data *data);
+void messages(char *str, t_philo *philo);
+void take_forks(t_philo *philo);
+void eat(t_philo *philo);
+void sleeping(t_philo *philo);
+void think(t_philo *philo);
 #endif

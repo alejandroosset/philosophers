@@ -6,7 +6,7 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 11:24:23 by aosset-o          #+#    #+#             */
-/*   Updated: 2025/11/27 17:30:58 by aosset-o         ###   ########.fr       */
+/*   Updated: 2025/11/28 16:11:14 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void init_data(int ac, char *av[], t_data *data)
         data->meals_nb = -1;
     data->dead = 0;
     data->finished = 0;
+    data->start_time = get_current_time();
     pthread_mutex_init(&data->lock, NULL);
     pthread_mutex_init(&data->write, NULL);
 }
