@@ -6,21 +6,56 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 15:05:24 by aosset-o          #+#    #+#             */
-/*   Updated: 2025/11/28 17:14:21 by aosset-o         ###   ########.fr       */
+/*   Updated: 2025/12/01 18:08:03 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
+void *supervisor(void *data_pointer)
+{
+    t_philo *philo = (t_philo *)data_pointer;
+    while (philo->data->dead == 0)
+    {
+        pthread_mutex_lock(&philo->data->lock);
+        if(philo->data->finished >= philo->data->philo_num)
+            philo->data->dead = 1;
+        pthread_mutex_lock(&philo->data->lock);
+    }
+    return((void *)0);
+}
+void *monitor(void *philo_pointer)
+{
+    t_philo *philo;
 
+    philo = philo_pointer;
+    while (philo->data->dead == 0)
+    {
+        if ((get_current_time() - philo->data->start_time) >= philo->time_to_die && philo->eating==0)
+            messages("died", philo);
+        if(philo->eat_count == philo->data->meals_nb)
+        {
+            pthread_mutex_lock(&philo->data->lock);
+            philo->data->finished++;
+            philo->eat_count++;
+            pthread_mutex_unlock(&philo->data->lock);
+        }
+    }
+    return((void *)0);
+}
 int init_threads(t_data *data)
 {
     int i;
+    pthread_t t0;
     
     i = -1;
     data->start_time = get_current_time();
+    if(data->meals_nb > 0)
+    {
+        pthread_create(&t0, NULL, &supervisor, &data->philos[0]);
+    }
     while(i++<data->philo_num - 1)
     {
-        if (pthread_create(&data->tid[i], NULL, routine, &data->philos[i]))
+        if (pthread_create(&data->tid[i], NULL, &routine, &data->philos[i]))
             return (ft_putendl_fd("Thread creating error", 2), 1);
     }
     i = -1;

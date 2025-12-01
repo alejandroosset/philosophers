@@ -6,7 +6,7 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 12:09:58 by aosset-o          #+#    #+#             */
-/*   Updated: 2025/11/28 17:14:47 by aosset-o         ###   ########.fr       */
+/*   Updated: 2025/12/01 17:21:23 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,6 @@ void ft_exit(t_data *data);
 void messages(char *str, t_philo *philo);
 void take_forks(t_philo *philo);
 void eat(t_philo *philo);
-void sleeping(t_philo *philo);
-void think(t_philo *philo);
+void *supervisor(void *data_pointer);
+void *monitor(void *philo_pointer);
 #endif

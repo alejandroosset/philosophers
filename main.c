@@ -6,7 +6,7 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 12:06:46 by aosset-o          #+#    #+#             */
-/*   Updated: 2025/11/28 17:20:14 by aosset-o         ###   ########.fr       */
+/*   Updated: 2025/12/01 18:09:56 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,18 @@
 void *routine(void *arg)
 {
 	t_philo *philo = (t_philo *)arg;
-	if (!philo)
-		return (NULL);
-	eat(philo);
-    sleeping(philo);
-    think(philo);
-	return (NULL);
+	philo->time_to_die = philo->data->death_time + get_current_time() - philo->data->start_time;
+	pthread_create(&philo->t1, NULL, &monitor, philo);
+	while (philo->data->dead == 0)
+	{
+		eat(philo);
+    	messages("is sleeping", philo);
+    	ft_usleep(philo->data->sleep_time);
+    	messages("is thinking", philo);
+	}
+	if(pthread_join(philo->t1, NULL))
+		return((void *) 1);
+	return ((void *) 1);
 }
 int main(int ac, char *av[])
 {
