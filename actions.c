@@ -6,7 +6,7 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 16:19:47 by aosset-o          #+#    #+#             */
-/*   Updated: 2025/12/01 18:02:57 by aosset-o         ###   ########.fr       */
+/*   Updated: 2025/12/02 17:24:03 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void take_forks(t_philo *philo)
 }
 void eat(t_philo *philo)
 {
-    take_forks(philo);
     pthread_mutex_lock(&philo->lock);
     messages("is eating", philo);
     philo->time_to_die = get_current_time() + philo->data->death_time - philo->data->start_time;
