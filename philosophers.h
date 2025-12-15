@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 12:09:58 by aosset-o          #+#    #+#             */
-/*   Updated: 2025/12/03 17:20:19 by marvin           ###   ########.fr       */
+/*   Updated: 2025/12/15 11:19:47 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ typedef struct s_data
 	pthread_mutex_t lock;
 	pthread_mutex_t write;
 } t_data;
-size_t	ft_atoi(const char *nptr);
+long	ft_atoi(const char *nptr);
 int  init_arg(int ac, char *av[], t_philo *philo);
 int check_args(int ac, char *av[]);
 void	ft_putendl_fd(char *s, int fd);

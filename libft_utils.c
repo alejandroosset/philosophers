@@ -6,7 +6,7 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 13:33:18 by aosset-o          #+#    #+#             */
-/*   Updated: 2025/11/28 17:13:34 by aosset-o         ###   ########.fr       */
+/*   Updated: 2025/12/15 11:23:49 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ int	ft_strcmp(const char *s1, const char *s2)
 	return (dif);
 }
 
-size_t	ft_atoi(const char *nptr)
+long	ft_atoi(const char *nptr)
 {
-	size_t	i;
-	int	res;
+	int	i;
+	long	res;
 
 	i = 0;
 	res = 0;
