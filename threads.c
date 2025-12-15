@@ -3,26 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   threads.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 15:05:24 by aosset-o          #+#    #+#             */
-/*   Updated: 2025/12/02 18:00:03 by aosset-o         ###   ########.fr       */
+/*   Updated: 2025/12/03 17:47:13 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
+int is_dead(t_philo *philo)
+{
+    int dead;
+    
+    pthread_mutex_lock(&philo->data->lock);
+    dead = philo->data->dead;
+    pthread_mutex_unlock(&philo->data->lock);
+    return (dead);
+}
 void *supervisor(void *data_pointer)
 {
     t_philo *philo = (t_philo *)data_pointer;
-    while (philo->data->dead == 0)
+    int dead;
+
+    dead = 0;
+    while (dead == 0)
     {
-        
+        pthread_mutex_lock(&philo->data->lock);
         if(philo->data->finished >= philo->data->philo_num)
-        {
-            pthread_mutex_lock(&philo->data->lock);
-            philo->data->dead = 1;
-            pthread_mutex_unlock(&philo->data->lock);  
-        }
+            philo->data->dead = 1; 
+        pthread_mutex_unlock(&philo->data->lock);
+        dead = is_dead(philo);
         ft_usleep(100);
     }
     return((void *)0);
@@ -30,21 +40,24 @@ void *supervisor(void *data_pointer)
 void *monitor(void *philo_pointer)
 {
     t_philo *philo;
-
+    int dead;
+    
+    dead = 0;
     philo = philo_pointer;
-    while (philo->data->dead == 0)
+    while (dead == 0)
     {
         if ((get_current_time() - philo->data->start_time) >= philo->time_to_die && philo->eating==0)
             messages("died", philo);
+        pthread_mutex_lock(&philo->lock);
+        pthread_mutex_lock(&philo->data->lock);
         if(philo->eat_count == philo->data->meals_nb)
         {
-            pthread_mutex_lock(&philo->data->lock);
             philo->data->finished++;
-            pthread_mutex_unlock(&philo->data->lock);
-            pthread_mutex_lock(&philo->lock);
             philo->eat_count++;
-            pthread_mutex_unlock(&philo->lock);
         }
+        pthread_mutex_unlock(&philo->lock);
+        pthread_mutex_unlock(&philo->data->lock);
+        dead = is_dead(philo);
         ft_usleep(100);
     }
     return((void *)0);
@@ -75,12 +88,14 @@ void messages(char *str, t_philo *philo)
 
     time = get_current_time() - philo->data->start_time;
     pthread_mutex_lock(&philo->data->write);
+    pthread_mutex_lock(&philo->data->lock);
     if(philo->eating == 0 && ft_strcmp(str, "died") == 0)
     {
         printf("%zu %i %s\n", time, philo->id, str);
         philo->data->dead = 1;
     }
-    if(!philo->data->dead)
+    else if(!philo->data->dead)
        printf("%zu %i %s\n", time, philo->id, str);
+    pthread_mutex_unlock(&philo->data->lock);
     pthread_mutex_unlock(&philo->data->write);
 }

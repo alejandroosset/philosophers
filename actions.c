@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   actions.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 16:19:47 by aosset-o          #+#    #+#             */
-/*   Updated: 2025/12/02 17:24:03 by aosset-o         ###   ########.fr       */
+/*   Updated: 2025/12/03 17:44:03 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void take_forks(t_philo *philo)
 {
+    if (is_dead(philo))
+        return;
     if(philo->id % 2 == 0)
     {   
         pthread_mutex_lock(philo->r_fork);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 12:09:58 by aosset-o          #+#    #+#             */
-/*   Updated: 2025/12/01 17:21:23 by aosset-o         ###   ########.fr       */
+/*   Updated: 2025/12/03 17:20:19 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,5 @@ void take_forks(t_philo *philo);
 void eat(t_philo *philo);
 void *supervisor(void *data_pointer);
 void *monitor(void *philo_pointer);
+int is_dead(t_philo *philo);
 #endif
