@@ -6,7 +6,7 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 15:05:24 by aosset-o          #+#    #+#             */
-/*   Updated: 2025/12/15 11:51:10 by aosset-o         ###   ########.fr       */
+/*   Updated: 2025/12/16 17:47:41 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void *supervisor(void *data_pointer)
             philo->data->dead = 1; 
         pthread_mutex_unlock(&philo->data->lock);
         dead = is_dead(philo);
-        ft_usleep(100);
+        //ft_usleep(100);
     }
     return((void *)0);
 }
@@ -76,7 +76,7 @@ void *monitor(void *philo_pointer)
         pthread_mutex_unlock(&philo->lock);
         pthread_mutex_unlock(&philo->data->lock);
         dead = is_dead(philo);
-        ft_usleep(100);
+        //ft_usleep(100);
     }
     return((void *)0);
 }
@@ -93,6 +93,7 @@ int init_threads(t_data *data)
     {
         if (pthread_create(&data->tid[i], NULL, &routine, &data->philos[i]))
             return (ft_putendl_fd("Thread creating error", 2), 1);
+        ft_usleep(1);
     }
     i = -1;
     while (i++ < data->philo_num - 1)

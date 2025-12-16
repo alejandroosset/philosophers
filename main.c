@@ -6,7 +6,7 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 12:06:46 by aosset-o          #+#    #+#             */
-/*   Updated: 2025/12/15 11:52:59 by aosset-o         ###   ########.fr       */
+/*   Updated: 2025/12/16 17:44:00 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void *routine(void *arg)
 	philo->time_to_die = philo->data->death_time + get_current_time() - philo->data->start_time;
 	pthread_mutex_unlock(&philo->lock);
 	pthread_create(&philo->t1, NULL, &monitor, philo);
-	if (philo->id % 2 == 1)
-        ft_usleep(100);
+	/*if (philo->id % 2 == 1 && get_current_time() == 0)
+        ft_usleep(500);*/
 	dead = 0;
 	while (dead == 0)
 	{
