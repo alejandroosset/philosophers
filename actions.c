@@ -6,7 +6,7 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 16:19:47 by aosset-o          #+#    #+#             */
-/*   Updated: 2025/12/17 12:12:29 by aosset-o         ###   ########.fr       */
+/*   Updated: 2025/12/17 16:51:19 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,11 @@ void	take_forks(t_philo *philo)
 {
 	if (is_dead(philo))
 		return ;
-	if (philo->id % 2 == 0)
-	{
-		pthread_mutex_lock(philo->r_fork);
-		messages("has taken a fork", philo);
-		pthread_mutex_lock(philo->l_fork);
-		messages("has taken a fork", philo);
-	}
-	else
-	{
-		pthread_mutex_lock(philo->l_fork);
-		messages("has taken a fork", philo);
-		pthread_mutex_lock(philo->r_fork);
-		messages("has taken a fork", philo);
-	}
+	pthread_mutex_lock(philo->r_fork);
+	messages("has taken a fork", philo);
+	pthread_mutex_lock(philo->l_fork);
+	messages("has taken a fork", philo);
+
 }
 
 void	eat(t_philo *philo)

@@ -6,12 +6,12 @@
 #    By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/11 12:10:36 by aosset-o          #+#    #+#              #
-#    Updated: 2025/12/15 10:44:36 by aosset-o         ###   ########.fr        #
+#    Updated: 2025/12/17 16:53:04 by aosset-o         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC=cc
-CFLAGS=-Wall -Werror -Wextra 
+CFLAGS=-Wall -Werror -Wextra -fsanitize=address
 
 
 NAME = philo
