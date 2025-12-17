@@ -6,7 +6,7 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 11:14:18 by aosset-o          #+#    #+#             */
-/*   Updated: 2025/12/17 12:38:45 by aosset-o         ###   ########.fr       */
+/*   Updated: 2025/12/17 23:23:48 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,5 +69,5 @@ size_t	get_current_time(void)
 
 	if (gettimeofday(&time, NULL) == -1)
 		ft_putendl_fd("gettimeofday() error", 2);
-	return (time.tv_sec * 1000 + time.tv_usec / 1000);
+	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
 }
