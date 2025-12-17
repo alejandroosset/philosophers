@@ -6,7 +6,7 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 13:33:18 by aosset-o          #+#    #+#             */
-/*   Updated: 2025/12/15 11:23:49 by aosset-o         ###   ########.fr       */
+/*   Updated: 2025/12/17 12:14:03 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,16 @@ int	ft_strcmp(const char *s1, const char *s2)
 
 long	ft_atoi(const char *nptr)
 {
-	int	i;
+	int		i;
 	long	res;
 
 	i = 0;
 	res = 0;
 	while (nptr[i] != '\0')
 	{
-		if (((nptr[i]<= '0' && nptr[i] >= '9')) &&  nptr[i] != '+' && 
-			(nptr[i] >= 9 && nptr[i] <= 13))
-			return(-1);
+		if (((nptr[i] <= '0' && nptr[i] >= '9')) && nptr[i] != '+'
+			&& (nptr[i] >= 9 && nptr[i] <= 13))
+			return (-1);
 		i++;
 	}
 	i = 0;
@@ -55,8 +55,8 @@ long	ft_atoi(const char *nptr)
 		res = res * 10 + nptr[i] - '0';
 		i++;
 	}
-	if(nptr[i] != '\0')
-		return(-1);
+	if (nptr[i] != '\0')
+		return (-1);
 	return (res);
 }
 
